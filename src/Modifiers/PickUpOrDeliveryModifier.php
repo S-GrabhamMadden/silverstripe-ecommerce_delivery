@@ -498,12 +498,17 @@ class PickUpOrDeliveryModifier extends OrderModifier
     {
         $obj = $this->liveOptionObject();
         if (is_object($obj)) {
-            $v = $obj->Name;
+            $page = null;
             if ($obj->ExplanationPageID) {
                 $page = $obj->ExplanationPage();
-                if ($page) {
-                    $v .= '<div id="PickUpOrDeliveryModifierExplanationLink"><a href="' . $page->Link() . '" class="externalLink">' . Convert::raw2sql($page->Title) . '</a></div>';
-                }
+            }
+            $v = '';
+            if ($page) {
+                $v .= '<div class="delivery-explanation-link"><a href="' . $page->AbsoluteLink() . '" class="externalLink" target="_blank">';
+            }
+            $v .= $obj->Name;
+            if ($page) {
+                $v .= '</a></div>';
             }
 
             return $v;
