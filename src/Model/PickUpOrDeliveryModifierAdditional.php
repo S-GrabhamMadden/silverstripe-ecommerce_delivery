@@ -2,6 +2,7 @@
 
 namespace Sunnysideup\EcommerceDelivery\Model;
 
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\GridField\GridField;
@@ -20,9 +21,9 @@ use Sunnysideup\Ecommerce\Pages\Product;
  * @property int $Sort
  * @property int $ExplanationPageID
  * @property int $AddedWithOptionID
- * @method \SilverStripe\CMS\Model\SiteTree ExplanationPage()
- * @method \Sunnysideup\EcommerceDelivery\Model\PickUpOrDeliveryModifierOptions AddedWithOption()
- * @method \SilverStripe\ORM\ManyManyList|\Sunnysideup\Ecommerce\Pages\Product[] IncludedProducts()
+ * @method SiteTree ExplanationPage()
+ * @method PickUpOrDeliveryModifierOptions AddedWithOption()
+ * @method ManyManyList|Product[] IncludedProducts()
  */
 class PickUpOrDeliveryModifierAdditional extends DataObject
 {
@@ -46,6 +47,7 @@ class PickUpOrDeliveryModifierAdditional extends DataObject
     private static $searchable_fields = [
         'Title' => 'PartialMatchFilter',
     ];
+
     //
     // private static $field_labels = [
     // ];
@@ -87,7 +89,7 @@ class PickUpOrDeliveryModifierAdditional extends DataObject
     {
         $fields = parent::getCMSFields();
         $fields->removeByName('Sort');
-        $fields->replaceField('ExplanationPageID', new TreeDropdownField($name = 'ExplanationPageID', $title = 'Explanation Page', SiteTree::class));
+        $fields->replaceField('ExplanationPageID', TreeDropdownField::create($name = 'ExplanationPageID', $title = 'Explanation Page', SiteTree::class));
 
         $fields->replaceField(
             'IncludedProducts',

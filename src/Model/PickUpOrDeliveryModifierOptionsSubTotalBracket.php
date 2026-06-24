@@ -2,6 +2,7 @@
 
 namespace Sunnysideup\EcommerceDelivery\Model;
 
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\ReadonlyField;
@@ -17,7 +18,7 @@ use Sunnysideup\Ecommerce\Model\Extensions\EcommerceRole;
  * @property float $MinimumSubTotal
  * @property float $MaximumSubTotal
  * @property float $FixedCost
- * @method \SilverStripe\ORM\ManyManyList|\Sunnysideup\EcommerceDelivery\Model\PickUpOrDeliveryModifierOptions[] PickUpOrDeliveryModifierOptions()
+ * @method ManyManyList|PickUpOrDeliveryModifierOptions[] PickUpOrDeliveryModifierOptions()
  */
 class PickUpOrDeliveryModifierOptionsSubTotalBracket extends DataObject
 {
@@ -68,7 +69,7 @@ class PickUpOrDeliveryModifierOptionsSubTotalBracket extends DataObject
         return _t('PickUpOrDeliveryModifierOptions.SUBTOTAL_BRACKET', 'Sub-Total Bracket');
     }
 
-    public function i18n_plural_name()
+    public function plural_name()
     {
         return _t('PickUpOrDeliveryModifierOptions.SUBTOTAL_BRACKETS', 'Sub-Total Brackets');
     }

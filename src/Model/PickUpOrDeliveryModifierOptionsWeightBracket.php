@@ -2,6 +2,7 @@
 
 namespace Sunnysideup\EcommerceDelivery\Model;
 
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Permission;
@@ -15,7 +16,7 @@ use Sunnysideup\Ecommerce\Model\Extensions\EcommerceRole;
  * @property int $MinimumWeight
  * @property int $MaximumWeight
  * @property float $FixedCost
- * @method \SilverStripe\ORM\ManyManyList|\Sunnysideup\EcommerceDelivery\Model\PickUpOrDeliveryModifierOptions[] PickUpOrDeliveryModifierOptions()
+ * @method ManyManyList|PickUpOrDeliveryModifierOptions[] PickUpOrDeliveryModifierOptions()
  */
 class PickUpOrDeliveryModifierOptionsWeightBracket extends DataObject
 {
@@ -66,7 +67,7 @@ class PickUpOrDeliveryModifierOptionsWeightBracket extends DataObject
         return _t('PickUpOrDeliveryModifierOptions.WEIGHTBRACKET', 'Weight Bracket');
     }
 
-    public function i18n_plural_name()
+    public function plural_name()
     {
         return _t('PickUpOrDeliveryModifierOptions.WEIGHTBRACKETS', 'Weight Brackets');
     }

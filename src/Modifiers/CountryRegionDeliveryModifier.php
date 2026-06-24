@@ -10,6 +10,8 @@ use Sunnysideup\Ecommerce\Model\Address\EcommerceCountry;
  */
 class CountryRegionDeliveryModifier extends PickUpOrDeliveryModifier
 {
+    private static $table_name = 'CountryRegionDeliveryModifier';
+
     // ######################################## *** cms variables + functions (e.g. getCMSFields, $searchableFields)
 
     public function getCMSFields()
@@ -18,11 +20,7 @@ class CountryRegionDeliveryModifier extends PickUpOrDeliveryModifier
         $fieldLabels = $this->Config()->get('field_labels');
         $fields->replaceField(
             'CountryCode',
-            new DropdownField(
-                'CountryCode',
-                $fieldLabels['CountryCode'],
-                EcommerceCountry::get_country_dropdown()
-            )
+            DropdownField::create('CountryCode', $fieldLabels['CountryCode'], EcommerceCountry::get_country_dropdown())
         );
 
         return $fields;
@@ -33,6 +31,7 @@ class CountryRegionDeliveryModifier extends PickUpOrDeliveryModifier
         if ($this->priceHasBeenFixed()) {
             return (string) $this->TableSubTitleFixed;
         }
+
         return (string) $this->RegionAndCountry;
     }
 }
